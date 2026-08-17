@@ -1,154 +1,646 @@
-# DEADLOCK-DETECTOR-AND-RECOVERY-SIMULATOR..
+# 🖥️ Deadlock Detection & Recovery Simulator
 
-https://deadlock-visualizer.onrender.com 
+An interactive **Operating Systems Deadlock Detection and Recovery Simulator** designed to bridge the gap between theoretical OS concepts and practical visualization.
 
-# DEADLOCKSIM — Deadlock Detection & Recovery Simulator
+The simulator allows users to create and modify multi-process, multi-resource system states and observe how **Banker's Algorithm**, **Resource Allocation Graph (RAG) cycle detection**, and different **deadlock recovery strategies** behave in real time.
 
-**DEADLOCKSIM** is an interactive Operating Systems laboratory and deadlock simulation platform designed to visualize, analyze, detect, and recover from resource-allocation deadlocks.
+---
 
-The simulator represents processes and resources through a dynamic **Resource Allocation Graph (RAG)** while simultaneously exposing the underlying system matrices used by classical deadlock algorithms.
+## 🚀 Overview
 
-Users can experiment with different process/resource configurations, modify allocation and maximum-claim matrices, generate potential demand through the Need Matrix, issue dynamic resource requests, and observe how the system's safety state changes.
+Deadlocks are one of the fundamental problems in Operating Systems where a set of processes become permanently blocked because each process is waiting for resources held by another process.
 
-## Core Capabilities
+This project provides a visual and interactive environment for understanding:
 
-### System Matrices
+* Resource allocation
+* Maximum resource requirements
+* Remaining resource needs
+* Safe and unsafe system states
+* Deadlock detection using Resource Allocation Graphs
+* Circular wait and dependency cycles
+* Dynamic resource requests
+* Deadlock recovery
+* System snapshots and rollback
+* Configuration persistence
 
-The simulator provides editable system matrices including:
+Instead of only displaying algorithmic output, the simulator lets users **experiment with system states and immediately observe the results**.
+
+---
+
+## ✨ Features
+
+### 🔵 Banker's Algorithm
+
+Performs a complete system safety check using the Banker's Algorithm.
+
+The simulator:
+
+* Calculates the `Need` matrix automatically
+* Evaluates whether available resources can satisfy process requirements
+* Simulates resource allocation
+* Generates a safe sequence when one exists
+* Identifies unsafe states when no complete safe sequence can be found
+* Displays algorithm activity through the live terminal
+
+The Need matrix is calculated using:
+
+```text
+Need = Maximum - Allocation
+```
+
+---
+
+### 🟡 Resource Allocation Graph & Deadlock Detection
+
+The simulator constructs a directed **Resource Allocation Graph (RAG)** using:
+
+* Resource → Process edges for allocated resources
+* Process → Resource edges for active resource requests
+
+A **Depth-First Search (DFS)** based cycle-detection mechanism is used to identify circular dependencies.
+
+The interface visually highlights the nodes and edges involved in detected cycles.
+
+Complexity:
+
+```text
+DFS Cycle Detection: O(V + E)
+```
+
+---
+
+### 🔴 Deadlock Recovery
+
+Once a deadlock is detected, the simulator provides multiple recovery strategies:
+
+#### Abort
+
+Terminates a selected process involved in the deadlock and releases its resources.
+
+#### Victim Selection
+
+Selects a suitable process as a victim and removes it to help break the deadlock.
+
+#### Resource Preemption
+
+Reclaims resources from selected processes to restore system progress.
+
+These strategies demonstrate how Operating Systems can recover from an already-established deadlock.
+
+---
+
+### 🟢 Dynamic Resource Requests
+
+Users can enter resource requests for individual processes.
+
+The simulator validates requests against:
+
+```text
+Request ≤ Need
+Request ≤ Available
+```
+
+The request is then evaluated for system safety before being accepted.
+
+This allows users to experiment with different allocation scenarios without manually calculating every step.
+
+---
+
+### 📊 Live System Matrices
+
+The interface provides editable and automatically calculated representations of:
 
 * Allocation Matrix
-* Maximum Claim (MAX) Matrix
-* Need Matrix / Potential Demand
-* Available/Resource state information
+* Maximum Claim Matrix
+* Available Vector
+* Current Request Matrix
+* Need Matrix
 
-The Need Matrix is derived from the relationship between maximum claims and current allocations.
+Changing an input immediately updates the system state.
 
-### Resource Allocation Graph
+---
 
-The simulator visually represents:
+### 🎯 Preset Scenarios
 
-* Processes
-* Resources
-* Resource allocations
-* Resource requests
+The simulator includes predefined scenarios for quickly demonstrating:
 
-The graph provides a visual representation of the current resource-allocation state, allowing users to understand how processes and resources interact.
+* SAFE state
+* UNSAFE state
+* DEADLOCK state
 
-### Banker's Algorithm
+This makes the project particularly useful for:
 
-The simulator includes Banker's Algorithm functionality for analyzing whether the current resource state is safe.
+* OS laboratory demonstrations
+* Classroom presentations
+* Mini-project evaluations
+* Algorithm experimentation
 
-It can determine:
+---
 
-* Whether the system is safe
-* Whether a safe sequence exists
-* The safe sequence of processes
-* Resource utilization
-* Effects of resource requests on system safety
+### 💾 Snapshots & Rollback
 
-Example:
+The simulator supports system-state snapshots.
+
+Users can:
+
+1. Save the current system state
+2. Experiment with allocations or recovery
+3. Roll back to the previous saved state
+
+This makes experimentation safer and easier.
+
+---
+
+### 📂 JSON Import / Export
+
+System configurations can be exported as JSON files and imported later.
+
+This allows users to save custom scenarios and reproduce experiments.
+
+---
+
+### 📄 PDF Report Generation
+
+The simulator can generate a professional report containing information about the current simulation state.
+
+This can be useful for:
+
+* OS laboratory submissions
+* Project documentation
+* Demonstrations
+* Experiment records
+
+---
+
+### 🌙 Light & Dark Mode
+
+The interface includes both dark and light themes.
+
+The default design uses a modern glassmorphism/neon-inspired interface while maintaining a dedicated light mode.
+
+---
+
+### 🎓 Tutorial / Academic Mode
+
+The interface includes contextual tooltips containing:
+
+* Algorithm descriptions
+* OS formulas
+* Complexity information
+* Explanations of system matrices
+* Guidance for simulator controls
+
+This makes the application suitable not only as a demonstration tool but also as a learning aid.
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+* HTML5
+* CSS3
+* Vanilla JavaScript (ES6+)
+
+### Backend / Local Server
+
+* Node.js
+* Express.js
+
+### Fonts
+
+* Outfit
+* JetBrains Mono
+
+### Architecture
+
+The project uses a lightweight client-side simulation architecture with an Express server used to serve the application locally.
+
+No database is required.
+
+---
+
+## 📁 Project Structure
 
 ```text
-SYSTEM IS SAFE
-
-SAFE SEQUENCE FOUND
-
-P1 → P3 → P4 → P0 → P2
+deadlock-detection-recovery-simulator/
+│
+├── index.html
+├── simulator.js
+├── style.css
+│
+├── server.js
+├── package.json
+├── package-lock.json
+│
+├── Deadlock_Simulator_Documentation.ipynb
+├── Future_Enhancements.ipynb
+├── generate_nb.py
+│
+├── start_server.bat
+└── README.md
 ```
 
-### Deadlock Detection
+> `node_modules/` should not be committed to GitHub. It is generated automatically using `npm install`.
 
-The simulator provides a dedicated detection mechanism for identifying potentially unsafe/deadlocked states.
+---
 
-The interface distinguishes system states and provides visual feedback about the current condition.
+# 🚀 Getting Started
 
-### Dynamic Resource Requests
+## Prerequisites
 
-Users can select a process and submit a dynamic resource request.
+Make sure you have installed:
 
-This allows experimentation with questions such as:
+* Node.js
+* npm
+* Git
 
-* Can the process receive the requested resources?
-* Would granting the request preserve system safety?
-* What happens to the system state after the request?
-* Does the request create an unsafe condition?
+You can verify the installation with:
 
-### Recovery Simulation
+```bash
+node --version
+npm --version
+git --version
+```
 
-DEADLOCKSIM includes recovery-oriented controls for experimenting with different deadlock recovery strategies, including:
+---
 
-* Abort
-* Victim selection
-* Preemption
+## 1. Clone the Repository
 
-These controls allow users to study how different recovery strategies can alter the resource-allocation state.
+```bash
+git clone https://github.com/YOUR-USERNAME/deadlock-detection-recovery-simulator.git
+```
 
-### Presets
+Move into the project directory:
 
-The simulator provides predefined configurations so users can quickly load different system states without manually entering every matrix value.
+```bash
+cd deadlock-detection-recovery-simulator
+```
 
-### Execution Logs
+---
 
-The simulator maintains an execution log that records important simulator events and actions, allowing users to follow what happened during an experiment.
+## 2. Install Dependencies
 
-### Resource Utilization
+Run:
 
-The system displays utilization information for individual resources, including:
+```bash
+npm install
+```
 
-* Current allocation
-* Total resource capacity
-* Utilization percentage
+This installs the required Node.js dependencies from `package.json`.
 
-This provides an additional view of system resource consumption.
+---
 
-### Save / Load / Reset
+## 3. Start the Simulator
 
-The interface includes controls for:
+Run:
 
-* Saving simulator state
-* Loading previously saved state
-* Resetting the simulator
-* Returning to previous states/views where supported
+```bash
+npm start
+```
 
-## Educational Purpose
-
-DEADLOCKSIM is designed to make Operating Systems deadlock concepts more interactive than traditional matrix-based calculations.
-
-Instead of only calculating a safe sequence on paper, users can observe the relationship between:
+The server will start on:
 
 ```text
-Processes
-     ↓
-Resource Allocation
-     ↓
-Allocation / Maximum / Need
-     ↓
-Resource Allocation Graph
-     ↓
-Banker's Algorithm
-     ↓
-Safety Analysis
-     ↓
-Detection
-     ↓
-Recovery
+http://localhost:3000
 ```
 
-The project therefore combines **algorithmic computation, graphical visualization, and interactive simulation** into a single Operating Systems learning environment.
+Open that address in your browser.
 
-## Technology / Architecture
+---
 
-The implementation should preserve the project's existing architecture and technologies.
+## ⚡ Development Mode
 
-Do not replace the current implementation merely for the sake of introducing another framework or library.
+For development with automatic server restarting:
 
-The simulator's core priority is correctness of:
+```bash
+npm run dev
+```
 
-* Resource allocation calculations
-* Matrix relationships
-* Safe-state analysis
-* Safe-sequence generation
+---
+
+## 🪟 Windows Shortcut
+
+Windows users can also use:
+
+```text
+start_server.bat
+```
+
+to start the local server.
+
+---
+
+# 🧪 How to Use the Simulator
+
+## Step 1 — Examine the System Matrices
+
+The simulator initially loads a predefined multi-process, multi-resource configuration.
+
+You can inspect:
+
+* Allocation
+* Maximum Claim
+* Available
+* Current Requests
+* Need
+
+---
+
+## Step 2 — Run Banker's Algorithm
+
+Click:
+
+```text
+BANKER'S
+```
+
+The simulator evaluates the current system state.
+
+If all processes can eventually complete, a **Safe Sequence** is displayed.
+
+If no complete sequence exists, the system is reported as **Unsafe**.
+
+---
+
+## Step 3 — Detect Deadlock
+
+Enter or modify active resource requests and click:
+
+```text
+DETECT
+```
+
+The simulator constructs the Resource Allocation Graph and performs DFS-based cycle detection.
+
+Detected cycles are visually represented in the graph.
+
+---
+
+## Step 4 — Experiment With Recovery
+
+If a deadlock is detected, recovery controls become available.
+
+Try:
+
+```text
+ABORT
+VICTIM
+PREEMPT
+```
+
+Observe how releasing or reclaiming resources changes the system state.
+
+---
+
+## Step 5 — Test Resource Requests
+
+Use the **Dynamic Resource Request** section to simulate a process requesting additional resources.
+
+The simulator checks whether granting the request would maintain a safe state.
+
+---
+
+## Step 6 — Save a Scenario
+
+Use:
+
+```text
+SAVE
+```
+
+to create a checkpoint.
+
+You can then experiment freely.
+
+Use:
+
+```text
+BACK
+```
+
+to return to the saved state.
+
+---
+
+## Step 7 — Export Your Configuration
+
+Use the JSON export control to save the current simulation configuration.
+
+The exported configuration can later be imported into the simulator.
+
+---
+
+## Step 8 — Generate a Report
+
+Use:
+
+```text
+PDF
+```
+
+to generate a report of the current simulation state.
+
+---
+
+# 🧠 Algorithms Implemented
+
+## 1. Banker's Algorithm
+
+The simulator uses the standard safety-check procedure:
+
+```text
+Need[i][j] = Max[i][j] - Allocation[i][j]
+```
+
+The algorithm repeatedly searches for a process whose remaining requirements can be satisfied by the currently available resources.
+
+When a process can finish:
+
+```text
+Work = Work + Allocation[i]
+```
+
+The process is added to the safe sequence.
+
+If every process can finish, the system is safe.
+
+Otherwise, the state is unsafe.
+
+---
+
+## 2. Resource Allocation Graph
+
+The simulator represents resource relationships using a directed graph.
+
+### Allocation Edge
+
+```text
+Resource → Process
+```
+
+represents a resource currently allocated to a process.
+
+### Request Edge
+
+```text
+Process → Resource
+```
+
+represents a process waiting for a resource.
+
+A cycle in the resulting graph can indicate a circular wait and, under the appropriate resource conditions, a deadlock.
+
+---
+
+## 3. DFS Cycle Detection
+
+The simulator uses:
+
+```text
+Depth-First Search
+```
+
+to traverse the Resource Allocation Graph.
+
+The algorithm maintains:
+
+* Visited nodes
+* Current recursion stack
+* Nodes participating in cycles
+* Edges participating in detected cycles
+
+Complexity:
+
+```text
+O(V + E)
+```
+
+where:
+
+* `V` = number of graph vertices
+* `E` = number of graph edges
+
+---
+
+# 📈 Complexity
+
+| Operation                   | Complexity                              |
+| --------------------------- | --------------------------------------- |
+| Need Matrix Calculation     | O(P × R)                                |
+| Banker's Safety Check       | O(P² × R)                               |
+| RAG Construction            | O(P × R)                                |
+| DFS Cycle Detection         | O(V + E)                                |
+| Resource Request Validation | O(R)                                    |
+| Resource Preemption         | Depends on affected resources/processes |
+
+Where:
+
+* `P` = number of processes
+* `R` = number of resource types
+* `V` = number of RAG vertices
+* `E` = number of RAG edges
+
+---
+
+# 🎓 Educational Objectives
+
+This project was developed to demonstrate practical understanding of the following Operating Systems concepts:
+
+* Deadlock
+* Deadlock prevention and avoidance
 * Deadlock detection
-* Dynamic resource requests
-* Recovery simulation
-* Graph visualization
+* Deadlock recovery
+* Banker's Algorithm
+* Safe and unsafe states
+* Resource Allocation Graphs
+* Circular wait
+* Resource requests
+* Process-resource relationships
+* Resource preemption
+* Process termination
+
+The primary goal is to transform traditionally mathematical OS algorithms into an interactive visual simulation.
+
+---
+
+# 🔮 Future Enhancements
+
+Potential improvements include:
+
+* Support for larger numbers of processes and resources
+* Step-by-step Banker’s Algorithm execution
+* More advanced victim-selection policies
+* Additional deadlock detection algorithms
+* Simulation history and playback
+* Persistent browser storage
+* Multi-user scenario sharing
+* Performance benchmarking
+* More detailed algorithm visualizations
+* Mobile-responsive optimization
+* Additional export formats
+
+---
+
+# 📚 Documentation
+
+Additional project documentation is included in the repository:
+
+```text
+Deadlock_Simulator_Documentation.ipynb
+Future_Enhancements.ipynb
+```
+
+These notebooks provide supporting technical and project documentation.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+To contribute:
+
+```bash
+git fork
+```
+
+Create a new branch:
+
+```bash
+git checkout -b feature/your-feature
+```
+
+Make your changes and commit them:
+
+```bash
+git add .
+git commit -m "Add your feature"
+```
+
+Push the branch:
+
+```bash
+git push origin feature/your-feature
+```
+
+Then open a Pull Request.
+
+---
+
+# 📜 License
+
+This project is intended primarily for educational and academic purposes.
+
+---
+
+## 👨‍💻 Project
+
+**Deadlock Detection & Recovery Simulator**
+
+Operating Systems Mini Project
+Academic Session 2025–2026
+
+Built to make Operating Systems deadlock concepts **interactive, visual, and easier to understand.**
+
+---

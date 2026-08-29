@@ -2,6 +2,9 @@
 
 NOTE : I STRONGLY SUGGEST YOU TO DOWNLOAD THE ZIP FILE TO LOAD THIS APPLICATION IN YOUR LAPTOPS , PC . 
 
+https://deadlock-visualizer.onrender.com - ACCESS THE LIVE FROM HERE
+
+
 An interactive **Operating Systems Deadlock Detection and Recovery Simulator** designed to bridge the gap between theoretical OS concepts and practical visualization.
 
 The simulator allows users to create and modify multi-process, multi-resource system states and observe how **Banker's Algorithm**, **Resource Allocation Graph (RAG) cycle detection**, and different **deadlock recovery strategies** behave in real time.

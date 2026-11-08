@@ -1,6 +1,9 @@
-# 🖥️ DEADLOCKLAB — Operating Systems Lab Workbench
-
-An interactive, high-fidelity Operating Systems simulator built to visualize, analyze, step through, and resolve deadlock scenarios across single-instance and multi-instance resource environments. Developed for academic excellence at **Don Bosco Institute of Technology (DBIT), Kurla**.
+<div align="center">
+  <img src="assets/logo.svg" alt="DEADLOCKLAB Logo" width="220" />
+  <h1>DEADLOCKLAB — Operating Systems Lab Workbench</h1>
+  <p>An interactive, high-fidelity Operating Systems simulator built to visualize, analyze, step through, and resolve deadlock scenarios across single-instance and multi-instance resource environments.</p>
+  <p><strong>Developed for academic excellence at Don Bosco Institute of Technology (DBIT), Kurla</strong></p>
+</div>
 
 ---
 

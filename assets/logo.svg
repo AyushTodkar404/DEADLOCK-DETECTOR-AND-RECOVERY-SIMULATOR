@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="60%" stop-color="#070c18" />
+      <stop offset="100%" stop-color="#030712" />
+    </radialGradient>
+
+    <!-- Core Glow Filter -->
+    <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Linear Gradients for Circuits -->
+    <linearGradient id="cyan-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+
+    <linearGradient id="ruby-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fb7185" />
+      <stop offset="100%" stop-color="#e11d48" />
+    </linearGradient>
+
+    <linearGradient id="amber-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <!-- Arrowheads -->
+    <marker id="logo-arrow-alloc" markerWidth="8" markerHeight="8" refX="16" refY="4" orient="auto">
+      <path d="M 1 1 L 7 4 L 1 7 Z" fill="#10b981" />
+    </marker>
+    <marker id="logo-arrow-req" markerWidth="8" markerHeight="8" refX="16" refY="4" orient="auto">
+      <path d="M 1 1 L 7 4 L 1 7 Z" fill="#f43f5e" />
+    </marker>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="108" fill="url(#bg-grad)" />
+  <rect width="508" height="508" x="2" y="2" rx="106" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="2" />
+
+  <!-- Ambient Cybernetic Orbit Rings -->
+  <circle cx="256" cy="220" r="140" fill="none" stroke="rgba(56, 189, 248, 0.06)" stroke-width="2" stroke-dasharray="6 8" />
+  <circle cx="256" cy="220" r="105" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1.5" />
+
+  <!-- Graph Dependency Edges (Interlocking Cycle) -->
+  <!-- Arc 1: Top P0 (256, 110) -> Right R0 (366, 220) -->
+  <path d="M 256 110 C 330 110, 366 150, 366 220" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linecap="round" marker-end="url(#logo-arrow-req)" filter="url(#soft-glow)" />
+
+  <!-- Arc 2: Right R0 (366, 220) -> Bottom P1 (256, 330) -->
+  <path d="M 366 220 C 366 290, 330 330, 256 330" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" marker-end="url(#logo-arrow-alloc)" filter="url(#soft-glow)" />
+
+  <!-- Arc 3: Bottom P1 (256, 330) -> Left R1 (146, 220) -->
+  <path d="M 256 330 C 182 330, 146 290, 146 220" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linecap="round" marker-end="url(#logo-arrow-req)" filter="url(#soft-glow)" />
+
+  <!-- Arc 4: Left R1 (146, 220) -> Top P0 (256, 110) -->
+  <path d="M 146 220 C 146 150, 182 110, 256 110" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round" marker-end="url(#logo-arrow-alloc)" filter="url(#soft-glow)" />
+
+  <!-- Central Locking Nucleus (Stylized Lock & Keyway Core) -->
+  <g transform="translate(256, 220)">
+    <!-- Shield/Core Hexagon Glow -->
+    <polygon points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19" fill="rgba(14, 165, 233, 0.08)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="2" />
+    
+    <!-- Shackle / Deadlock Loop -->
+    <path d="M -14 -4 C -14 -20, 14 -20, 14 -4 L 14 6 L -14 6 Z" fill="none" stroke="#38bdf8" stroke-width="3.5" stroke-linecap="round" filter="url(#neon-glow)" />
+    <!-- Padlock Body -->
+    <rect x="-18" y="4" width="36" height="28" rx="6" fill="#0f172a" stroke="#0ea5e9" stroke-width="2.5" />
+    <!-- Keyway Slot -->
+    <circle cx="0" cy="15" r="3.5" fill="#38bdf8" />
+    <path d="M -1.5 16 L 1.5 16 L 2 24 L -2 24 Z" fill="#38bdf8" />
+  </g>
+
+  <!-- Node 1: Top Process P0 (Circular) -->
+  <g transform="translate(256, 110)">
+    <circle cx="0" cy="0" r="28" fill="#0b1329" stroke="url(#cyan-blue)" stroke-width="4" filter="url(#neon-glow)" />
+    <circle cx="0" cy="0" r="24" fill="#0f172a" />
+    <text x="0" y="6" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-weight="800" font-size="16" fill="#f8fafc">P₀</text>
+  </g>
+
+  <!-- Node 2: Right Resource R0 (Square) -->
+  <g transform="translate(366, 220)">
+    <rect x="-26" y="-26" width="52" height="52" rx="12" fill="#0b1329" stroke="url(#amber-grad)" stroke-width="4" filter="url(#neon-glow)" />
+    <rect x="-22" y="-22" width="44" height="44" rx="9" fill="#0f172a" />
+    <text x="0" y="6" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#fbbf24">R₀</text>
+  </g>
+
+  <!-- Node 3: Bottom Process P1 (Circular, Deadlocked) -->
+  <g transform="translate(256, 330)">
+    <circle cx="0" cy="0" r="28" fill="#1e0c1b" stroke="url(#ruby-grad)" stroke-width="4" filter="url(#neon-glow)" />
+    <circle cx="0" cy="0" r="24" fill="#0f172a" />
+    <text x="0" y="6" text-anchor="middle" font-family="'Outfit', 'Inter', sans-serif" font-weight="800" font-size="16" fill="#f43f5e">P₁</text>
+  </g>
+
+  <!-- Node 4: Left Resource R1 (Square) -->
+  <g transform="translate(146, 220)">
+    <rect x="-26" y="-26" width="52" height="52" rx="12" fill="#081c1c" stroke="url(#emerald-grad)" stroke-width="4" filter="url(#neon-glow)" />
+    <rect x="-22" y="-22" width="44" height="44" rx="9" fill="#0f172a" />
+    <text x="0" y="6" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="800" font-size="16" fill="#34d399">R₁</text>
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(256, 424)">
+    <text text-anchor="middle" font-family="'Outfit', 'Segoe UI', sans-serif" font-weight="900" font-size="28" letter-spacing="4" fill="#f8fafc">
+      DEADLOCK<tspan fill="#38bdf8" filter="url(#soft-glow)">LAB</tspan>
+    </text>
+    <text y="22" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="11" letter-spacing="3" fill="#64748b">
+      OS WORKBENCH SIMULATOR
+    </text>
+  </g>
+</svg>

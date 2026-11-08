@@ -259,11 +259,11 @@ body::-webkit-scrollbar,
 }
 
 .logo-icon {
-    width: 22px;
-    height: 22px;
-    background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
+    width: 24px;
+    height: 24px;
+    background: url('assets/favicon.svg') no-repeat center / contain;
     border-radius: 6px;
-    box-shadow: 0 0 10px var(--accent-blue-glow);
+    filter: drop-shadow(0 0 6px var(--accent-blue-glow));
 }
 
 .logo h1 {

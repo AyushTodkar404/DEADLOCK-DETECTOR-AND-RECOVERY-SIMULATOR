@@ -1,7 +1,16 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+// Security & Defense Headers (OWASP) + Dev Cache Control
+app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    next();
+});
 
 // Serve static files from the current directory
 app.use(express.static(__dirname));
@@ -14,7 +23,7 @@ app.get('/', (req, res) => {
 const server = app.listen(PORT, () => {
     console.log(`=================================================`);
     console.log(`🚀 Deadlock Simulator: http://localhost:${PORT}`);
-    console.log(`🔄 Auto-restart enabled. Changes will sync!`);
+    console.log(`🔄 Standard port: ${PORT} | Universal Node server online`);
     console.log(`=================================================`);
 });
 

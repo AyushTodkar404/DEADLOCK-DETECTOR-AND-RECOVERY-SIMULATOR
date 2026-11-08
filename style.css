@@ -259,11 +259,27 @@ body::-webkit-scrollbar,
 }
 
 .logo-icon {
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
+    border-radius: 6px;
+    box-shadow: 0 0 10px var(--accent-blue-glow);
+}
+
+.logo-icon-img {
     width: 24px;
     height: 24px;
-    background: url('assets/favicon.svg') no-repeat center / contain;
     border-radius: 6px;
-    filter: drop-shadow(0 0 6px var(--accent-blue-glow));
+    object-fit: cover;
+    box-shadow: 0 0 10px var(--accent-blue-glow);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.modal-logo-img {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
 }
 
 .logo h1 {

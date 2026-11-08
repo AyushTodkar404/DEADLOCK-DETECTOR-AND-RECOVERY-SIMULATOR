@@ -1,9 +1,15 @@
 <div align="center">
-  <img src="assets/logo.svg" alt="DEADLOCKLAB Logo" width="220" />
-  <h1>DEADLOCKLAB — Operating Systems Lab Workbench</h1>
-  <p>An interactive, high-fidelity Operating Systems simulator built to visualize, analyze, step through, and resolve deadlock scenarios across single-instance and multi-instance resource environments.</p>
-  <p><strong>Developed for academic excellence at Don Bosco Institute of Technology (DBIT), Kurla</strong></p>
+  <img src="assets/deadlocklab_logo_v2.jpg" alt="DEADLOCKLAB Logo" width="130" style="border-radius: 20px; box-shadow: 0 0 25px rgba(14, 165, 233, 0.4);">
+  <h1>DEADLOCKLAB</h1>
+  <p><strong>Operating Systems Deadlock Detection & Recovery Workbench</strong></p>
+  <p><em>Don Bosco Institute of Technology (DBIT), Kurla — Academic Session 2025–2026</em></p>
 </div>
+
+---
+
+## 🚀 Overview
+
+An interactive, high-fidelity Operating Systems simulator built to visualize, analyze, step through, and resolve deadlock scenarios across single-instance and multi-instance resource environments. Developed for academic excellence at **Don Bosco Institute of Technology (DBIT), Kurla**.
 
 ---
 

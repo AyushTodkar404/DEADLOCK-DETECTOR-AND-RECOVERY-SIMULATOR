@@ -1,0 +1,23 @@
+{
+  "name": "DEADLOCKLAB - Deadlock Detection & Recovery Workbench",
+  "short_name": "DeadlockLab",
+  "description": "Interactive Operating Systems Deadlock Detection & Banker's Algorithm Workbench",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "assets/deadlocklab_logo_v2.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/deadlocklab_logo_v2.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

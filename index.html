@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>DEADLOCKLAB — OS Workbench</title>
     <link rel="icon" type="image/jpeg" href="assets/deadlocklab_logo_v2.jpg">
+    <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="style.css?v=2.2">
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap"
@@ -650,6 +651,13 @@
     </footer>
 
     <script src="simulator.js?v=2.2"></script>
+    <script>
+        if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./sw.js').catch(function() {});
+            });
+        }
+    </script>
 </body>
 
 </html>
